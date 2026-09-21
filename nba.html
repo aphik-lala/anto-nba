@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HOOPZONE - Basketball Live Dashboard">
+  <title>HOOPZONE | Basketball Live Hub</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="noise"></div>
+
+  <!-- NAVBAR -->
+  <header class="topbar">
+
+    <a href="#home" class="brand">
+      <span class="brand-mark">HZ</span>
+
+      <span class="brand-name">
+        <strong>HOOP</strong><em>ZONE</em>
+      </span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="#home" class="active">Home</a>
+      <a href="#live">Live</a>
+      <a href="#stats">Stats</a>
+      <a href="#standings">Standings</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#news">News</a>
+    </nav>
+
+    <div class="top-actions">
+      <button class="icon-btn" id="searchBtn">⌕</button>
+      <button class="icon-btn" id="themeBtn">◐</button>
+      <button class="menu-btn" id="menuBtn">☰</button>
+    </div>
+
+  </header>
+
+
+  <main id="home">
+
+    <!-- HERO -->
+    <section class="hero">
+
+      <div class="hero-copy">
+
+        <p class="eyebrow">
+          <span></span>
+          BASKETBALL / LIVE DATA
+        </p>
+
+        <h1>
+          THE GAME
+          <br>
+          <b>NEVER STOPS.</b>
+        </h1>
+
+        <p class="hero-text">
+          Pusat pertandingan basket dengan skor live,
+          statistik pemain, klasemen, jadwal dan berita
+          dalam satu dashboard modern.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a href="#live" class="btn btn-primary">
+            LIHAT LIVE SCORES
+            <span>→</span>
+          </a>
+
+          <a href="#stats" class="btn btn-ghost">
+            EXPLORE STATS
+          </a>
+
+        </div>
+
+        <div class="hero-meta">
+          <span>● DATA AUTO REFRESH</span>
+          <span id="lastUpdated">Menunggu data...</span>
+        </div>
+
+      </div>
+
+
+      <div class="hero-art">
+
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+
+        <div class="court-card">
+
+          <div class="court-lines"></div>
+
+          <div class="ball">
+            🏀
+          </div>
+
+          <div class="court-label">
+            NEXT
+            <br>
+            <b>TIP-OFF</b>
+          </div>
+
+          <div class="court-time">
+            19:30
+          </div>
+
+        </div>
+
+
+        <div class="floating-stat stat-a">
+          <small>PACE</small>
+          <strong>102.8</strong>
+          <span>+4.2%</span>
+        </div>
+
+
+        <div class="floating-stat stat-b">
+          <small>AVG PPG</small>
+          <strong>112.4</strong>
+          <span>LEAGUE</span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- TICKER -->
+    <section class="ticker">
+
+      <div class="ticker-title">
+        BREAKING
+      </div>
+
+      <div class="ticker-track" id="tickerTrack">
+
+        <span>
+          Live basketball scores update automatically
+        </span>
+
+        <span>
+          Player statistics & standings available
+        </span>
+
+        <span>
+          HOOPZONE Basketball Intelligence
+        </span>
+
+        <span>
+          Real-time game center
+        </span>
+
+      </div>
+
+    </section>
+
+
+    <!-- LIVE BOARD -->
+    <section class="section live-section" id="live">
+
+      <div class="section-heading">
+
+        <div>
+          <p class="section-kicker">
+            COURTSIDE
+          </p>
+
+          <h2>
+            LIVE
+            <span>BOARD</span>
+          </h2>
+        </div>
+
+
+        <div class="live-tools">
+
+          <div class="date-switcher">
+
+            <button
+              class="date-btn active"
+              data-day="0">
+              TODAY
+            </button>
+
+            <button
+              class="date-btn"
+              data-day="-1">
+              YESTERDAY
+            </button>
+
+            <button
+              class="date-btn"
+              data-day="1">
+              TOMORROW
+            </button>
+
+          </div>
+
+
+          <button
+            class="refresh-btn"
+            id="refreshBtn">
+            ↻ Refresh
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="live-layout">
+
+        <div
+          class="scoreboard"
+          id="scoreboard">
+
+          <div class="loading-card">
+
+            <div class="loader"></div>
+
+            <p>
+              Mengambil skor pertandingan...
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <aside class="pulse-card">
+
+          <div class="pulse-top">
+
+            <span class="live-dot"></span>
+
+            GAME PULSE
+
+          </div>
+
+
+          <div
+            class="pulse-number"
+            id="gameCount">
+            --
+          </div>
+
+          <p>
+            games found
+          </p>
+
+
+          <div class="pulse-line">
+            <span></span>
+          </div>
+
+
+          <div class="pulse-row">
+            <span>LIVE</span>
+            <b id="liveCount">--</b>
+          </div>
+
+
+          <div class="pulse-row">
+            <span>FINAL</span>
+            <b id="finalCount">--</b>
+          </div>
+
+
+          <div class="pulse-row">
+            <span>UPCOMING</span>
+            <b id="upcomingCount">--</b>
+          </div>
+
+
+          <div class="pulse-note">
+            Live feed memakai endpoint publik.
+            Jika API tidak tersedia, dashboard
+            menggunakan data demo.
+          </div>
+
+        </aside>
+
+      </div>
+
+    </section>
+
+
+    <!-- STATS -->
+    <section
+      class="section insight-section"
+      id="stats">
+
+      <div class="section-heading">
+
+        <div>
+
+          <p class="section-kicker">
+            PLAYER INTELLIGENCE
+          </p>
+
+          <h2>
+            STAT
+            <span>LEADERS</span>
+          </h2>
+
+        </div>
+
+
+        <div class="mini-tabs">
+
+          <button
+            class="mini-tab active"
+            data-stat="points">
+            POINTS
+          </button>
+
+          <button
+            class="mini-tab"
+            data-stat="rebounds">
+            REB
+          </button>
+
+          <button
+            class="mini-tab"
+            data-stat="assists">
+            AST
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="leader-grid"
+        id="leaderGrid">
+
+
+        <article class="leader-card featured">
+
+          <div class="rank">
+            01
+          </div>
+
+          <div class="player-photo photo-one"></div>
+
+          <div class="player-info">
+
+            <small>
+              GUARD / USA
+            </small>
+
+            <h3>
+              Jalen Carter
+            </h3>
+
+            <p>
+              METRO WOLVES
+            </p>
+
+          </div>
+
+          <div class="leader-value">
+
+            <b>
+              31.4
+            </b>
+
+            <small>
+              PPG
+            </small>
+
+          </div>
+
+        </article>
+
+
+        <article class="leader-card">
+
+          <div class="rank">
+            02
+          </div>
+
+          <div class="player-photo photo-two"></div>
+
+          <div class="player-info">
+
+            <small>
+              FORWARD / CAN
+            </small>
+
+            <h3>
+              Marcus Reed
+            </h3>
+
+            <p>
+              COAST GIANTS
+            </p>
+
+          </div>
+
+          <div class="leader-value">
+
+            <b>
+              29.8
+            </b>
+
+            <small>
+              PPG
+            </small>
+
+          </div>
+
+        </article>
+
+
+        <article class="leader-card">
+
+          <div class="rank">
+            03
+          </div>
+
+          <div class="player-photo photo-three"></div>
+
+          <div class="player-info">
+
+            <small>
+              CENTER / USA
+            </small>
+
+            <h3>
+              Andre Miles
+            </h3>
+
+            <p>
+              CAPITAL FORCE
+            </p>
+
+          </div>
+
+          <div class="leader-value">
+
+            <b>
+              28.6
+            </b>
+
+            <small>
+              PPG
+            </small>
+
+          </div>
+
+        </article>
+
+
+        <article class="leader-card">
+
+          <div class="rank">
+            04
+          </div>
+
+          <div class="player-photo photo-four"></div>
+
+          <div class="player-info">
+
+            <small>
+              GUARD / FRA
+            </small>
+
+            <h3>
+              Louis Martin
+            </h3>
+
+            <p>
+              ATLANTIC FIVE
+            </p>
+
+          </div>
+
+          <div class="leader-value">
+
+            <b>
+              27.9
+            </b>
+
+            <small>
+              PPG
+            </small>
+
+          </div>
+
+        </article>
+
+      </div>
+
+
+      <div class="metrics-grid">
+
+        <article class="metric-card">
+
+          <div class="metric-head">
+
+            <span>
+              OFFENSIVE RATING
+            </span>
+
+            <b>
+              118.7
+            </b>
+
+          </div>
+
+          <div class="bar">
+            <i style="width:88%"></i>
+          </div>
+
+          <small>
+            +7.8 vs last season
+          </small>
+
+        </article>
+
+
+        <article class="metric-card">
+
+          <div class="metric-head">
+
+            <span>
+              REBOUND RATE
+            </span>
+
+            <b>
+              54.2%
+            </b>
+
+          </div>
+
+          <div class="bar">
+            <i style="width:76%"></i>
+          </div>
+
+          <small>
+            League percentile 91
+          </small>
+
+        </article>
+
+
+        <article class="metric-card">
+
+          <div class="metric-head">
+
+            <span>
+              3PT EFFICIENCY
+            </span>
+
+            <b>
+              38.6%
+            </b>
+
+          </div>
+
+          <div class="bar">
+            <i style="width:69%"></i>
+          </div>
+
+          <small>
+            +2.1 percentage points
+          </small>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- STANDINGS -->
+    <section
+      class="section standings-section"
+      id="standings">
+
+      <div class="section-heading">
+
+        <div>
+
+          <p class="section-kicker">
+            RANKINGS
+          </p>
+
+          <h2>
+            POWER
+            <span>TABLE</span>
+          </h2>
+
+        </div>
+
+
+        <div class="conference-switch">
+
+          <button class="conf-btn active">
+            EAST
+          </button>
+
+          <button class="conf-btn">
+            WEST
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="table-wrap">
+
+        <table>
+
+          <thead>
+
+            <tr>
+              <th>#</th>
+              <th>TEAM</th>
+              <th>W</th>
+              <th>L</th>
+              <th>PCT</th>
+              <th>STREAK</th>
+              <th>FORM</th>
+            </tr>
+
+          </thead>
+
+
+          <tbody id="standingsBody">
+
+            <tr>
+
+              <td>
+                01
+              </td>
+
+              <td>
+                <span class="team-dot dot-a"></span>
+                Metro Wolves
+              </td>
+
+              <td>
+                18
+              </td>
+
+              <td>
+                4
+              </td>
+
+              <td>
+                .818
+              </td>
+
+              <td>
+                W5
+              </td>
+
+              <td>
+                <i class="win">W</i>
+                <i class="win">W</i>
+                <i class="win">W</i>
+                <i class="win">W</i>
+                <i class="win">W</i>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td>
+                02
+              </td>
+
+              <td>
+                <span class="team-dot dot-b"></span>
+                Coast Giants
+              </td>
+
+              <td>
+                16
+              </td>
+
+              <td>
+                6
+              </td>
+
+              <td>
+                .727
+              </td>
+
+              <td>
+                W2
+              </td>
+
+              <td>
+                <i class="win">W</i>
+                <i class="win">W</i>
+                <i class="loss">L</i>
+                <i class="win">W</i>
+                <i class="win">W</i>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td>
+                03
+              </td>
+
+              <td>
+                <span class="team-dot dot-c"></span>
+                Capital Force
+              </td>
+
+              <td>
+                15
+              </td>
+
+              <td>
+                7
+              </td>
+
+              <td>
+                .682
+              </td>
+
+              <td>
+                W1
+              </td>
+
+              <td>
+                <i class="win">W</i>
+                <i class="loss">L</i>
+                <i class="win">W</i>
+                <i class="win">W</i>
+                <i class="loss">L</i>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td>
+                04
+              </td>
+
+              <td>
+                <span class="team-dot dot-d"></span>
+                Atlantic Five
+              </td>
+
+              <td>
+                13
+              </td>
+
+              <td>
+                8
+              </td>
+
+              <td>
+                .619
+              </td>
+
+              <td>
+                L1
+              </td>
+
+              <td>
+                <i class="loss">L</i>
+                <i class="win">W</i>
+                <i class="win">W</i>
+                <i class="win">W</i>
+                <i class="loss">L</i>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td>
+                05
+              </td>
+
+              <td>
+                <span class="team-dot dot-e"></span>
+                Lake City
+              </td>
+
+              <td>
+                12
+              </td>
+
+              <td>
+                9
+              </td>
+
+              <td>
+                .571
+              </td>
+
+              <td>
+                W3
+              </td>
+
+              <td>
+                <i class="win">W</i>
+                <i class="win">W</i>
+                <i class="win">W</i>
+                <i class="loss">L</i>
+                <i class="win">W</i>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td>
+                06
+              </td>
+
+              <td>
+                <span class="team-dot dot-f"></span>
+                Harbor Kings
+              </td>
+
+              <td>
+                10
+              </td>
+
+              <td>
+                11
+              </td>
+
+              <td>
+                .476
+              </td>
+
+              <td>
+                L2
+              </td>
+
+              <td>
+                <i class="loss">L</i>
+                <i class="loss">L</i>
+                <i class="win">W</i>
+                <i class="loss">L</i>
+                <i class="win">W</i>
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+
+    <!-- SCHEDULE -->
+    <section
+      class="section schedule-section"
+      id="schedule">
+
+      <div class="section-heading">
+
+        <div>
+
+          <p class="section-kicker">
+            UP NEXT
+          </p>
+
+          <h2>
+            GAME
+            <span>CALENDAR</span>
+          </h2>
+
+        </div>
+
+        <a href="#live" class="text-link">
+          View all →
+        </a>
+
+      </div>
+
+
+      <div class="schedule-grid">
+
+
+        <article class="schedule-card">
+
+          <div class="schedule-date">
+            <b>18</b>
+            <span>SEP</span>
+          </div>
+
+          <div class="schedule-match">
+
+            <span>
+              19:30
+            </span>
+
+            <strong>
+              Metro Wolves
+              <em>vs</em>
+              Coast Giants
+            </strong>
+
+            <small>
+              Central Arena · Exhibition
+            </small>
+
+          </div>
+
+          <button>
+            DETAILS
+          </button>
+
+        </article>
+
+
+        <article class="schedule-card hot">
+
+          <div class="schedule-date">
+            <b>19</b>
+            <span>SEP</span>
+          </div>
+
+          <div class="schedule-match">
+
+            <span>
+              20:00
+            </span>
+
+            <strong>
+              Capital Force
+              <em>vs</em>
+              Lake City
+            </strong>
+
+            <small>
+              Union Center · Regular Season
+            </small>
+
+          </div>
+
+          <button>
+            DETAILS
+          </button>
+
+        </article>
+
+
+        <article class="schedule-card">
+
+          <div class="schedule-date">
+            <b>20</b>
+            <span>SEP</span>
+          </div>
+
+          <div class="schedule-match">
+
+            <span>
+              18:00
+            </span>
+
+            <strong>
+              Atlantic Five
+              <em>vs</em>
+              Harbor Kings
+            </strong>
+
+            <small>
+              Ocean Dome · Regular Season
+            </small>
+
+          </div>
+
+          <button>
+            DETAILS
+          </button>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- NEWS -->
+    <section
+      class="section news-section"
+      id="news">
+
+      <div class="section-heading">
+
+        <div>
+
+          <p class="section-kicker">
+            AROUND THE LEAGUE
+          </p>
+
+          <h2>
+            HOOP
+            <span>STORIES</span>
+          </h2>
+
+        </div>
+
+      </div>
+
+
+      <div class="news-grid">
+
+
+        <article class="news-card large">
+
+          <div class="news-image image-a"></div>
+
+          <div class="news-content">
+
+            <span>
+              FEATURE
+            </span>
+
+            <h3>
+              Why modern basketball is becoming
+              a game of spacing and speed.
+            </h3>
+
+            <p>
+              5 min read · Basketball Lab
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <article class="news-card">
+
+          <div class="news-image image-b"></div>
+
+          <div class="news-content">
+
+            <span>
+              ANALYSIS
+            </span>
+
+            <h3>
+              The numbers behind the league's
+              hottest offense.
+            </h3>
+
+            <p>
+              3 min read · Data Desk
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <article class="news-card">
+
+          <div class="news-image image-c"></div>
+
+          <div class="news-content">
+
+            <span>
+              PLAYERS
+            </span>
+
+            <h3>
+              Rookie watch: five names
+              changing the rotation.
+            </h3>
+
+            <p>
+              4 min read · Courtside
+            </p>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- CTA -->
+    <section class="cta">
+
+      <div class="cta-mark">
+        HZ
+      </div>
+
+      <div>
+
+        <p>
+          BUILD YOUR GAME IQ
+        </p>
+
+        <h2>
+          DON'T JUST WATCH.
+          <br>
+          <span>READ THE GAME.</span>
+        </h2>
+
+      </div>
+
+      <button
+        id="notifyBtn"
+        class="btn btn-primary">
+
+        GET UPDATES
+        <span>→</span>
+
+      </button>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="footer-brand">
+
+      <span class="brand-mark">
+        HZ
+      </span>
+
+      <strong>
+        HOOPZONE
+      </strong>
+
+    </div>
+
+
+    <p>
+      Independent basketball dashboard concept ·
+      Live data via public sports feed.
+    </p>
+
+
+    <div class="footer-links">
+
+      <a href="#home">
+        Home
+      </a>
+
+      <a href="#live">
+        Live
+      </a>
+
+      <a href="#stats">
+        Stats
+      </a>
+
+      <a href="#news">
+        News
+      </a>
+
+    </div>
+
+  </footer>
+
+
+  <!-- SEARCH -->
+  <div
+    class="search-panel"
+    id="searchPanel">
+
+    <button
+      id="closeSearch"
+      class="close-search">
+      ×
+    </button>
+
+    <p>
+      QUICK SEARCH
+    </p>
+
+    <h2>
+      Find a team, player or game
+    </h2>
+
+    <div class="search-box">
+
+      <input
+        id="siteSearch"
+        type="search"
+        placeholder="Ketik nama tim atau pemain...">
+
+      <button id="doSearch">
+        →
+      </button>
+
+    </div>
+
+    <div id="searchResult"></div>
+
+  </div>
+
+
+  <!-- TOAST -->
+  <div
+    class="toast"
+    id="toast">
+    Notifikasi aktif.
+  </div>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
